@@ -1,30 +1,33 @@
-# ai-weapon-webppt
+# WebPPT
 
-> OPC 社群线下分享会的 Swiss Army Knife 工具集——
-> Markdown / HTML / SVG / GitHub Pages 四种轻工具，
-> 帮个人创作者触达世界。
+单仓库聚合多场 HTML 演示（静态站点）。由 GitHub Pages 托管，同域 path 隔离，零构建、纯文件。
 
-这是 HANK（五花肉）在 [OPC 社群](https://github.com/HankGuo) 做线下分享时用的演示站。
-整套分享走 Motion Canvas + Remotion 双框架并行的路线，配色用 Mondrian，
-主旨：**个人创作者不必啃复杂框架也能做出视频 / 网页 / 演示**。
+## 在线访问
 
-## 在线看
+- 聚合落地页：<https://webppt.aichi.food/>
+- 四种轻工具（OPC 分享）：<https://webppt.aichi.food/ai-weapon/>
+- 智能财务（WorkBuddy 专场）：<https://webppt.aichi.food/workbuddy-finance/>
 
-**[https://ai-weapon.webppt.aichi.food/](https://ai-weapon.webppt.aichi.food/)**
+## 主题
 
-## 这个仓库装的是什么
+- `ai-weapon/` — 四种轻工具：Markdown / HTML / SVG / GitHub Pages，个人创作者触达世界的瑞士军刀（OPC 社群线下分享）。
+- `workbuddy-finance/` — 智能财务 · WorkBuddy 财务专场 Meetup：19 页 deck，六个真实财务任务从原始文件到交付成果。
 
-- 分享会的讲义与演示站源
-- 演示范例片段（Motion Canvas 场景、Remotion 组件）
-- 现场用到的工具脚本
-- 同主题长文也归档在公众号「算力白肉」
+## 架构
 
-## 联系
+- 单仓库 + 多子目录 + 同域 path 隔离。
+- 每个主题独立目录，内容与引用互不干扰；子目录内相对引用（`styles.css` / `assets/`）在移动后依旧有效。
+- 加新主题：新建一个子目录，把该主题的静态文件放进去，再在根落地页 `index.html` 加一张卡即可。
 
-- 个人主页 / 主站：[https://aichi.food](https://aichi.food)
-- 公众号「算力白肉」：微信搜索 ID 同名
-- 商务 / B 端承接：[https://www.rayda-tech.com](https://www.rayda-tech.com)
-- GitHub: [@HankGuo](https://github.com/HankGuo)
+## 部署
+
+- GitHub Pages，自定义域 `webppt.aichi.food`（见根 `CNAME`）。
+- 根 `.nojekyll` 关闭 Jekyll，保证静态文件原样服务。
+- DNS：把 `webppt.aichi.food` 的 CNAME 记录指向 `HankGuo.github.io`。
+
+## 不纳入版本管理
+
+PPTX 源文件、`.workbuddy/`、本地备份（`*.bak`）、`node_modules` —— 见 `.gitignore`。
 
 ## License
 

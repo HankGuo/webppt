@@ -3,813 +3,154 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>四种轻工具，个人创作者触达世界的瑞士军刀</title>
+  <title>WebPPT · 公开演示集</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet" />
   <style>
-    :root { --slide-count: 15; }
+    :root {
+      --ink: #1a1a1c;
+      --muted: #6b7280;
+      --faint: #9ca3af;
+      --line: #e6e7e9;
+      --bg: #fbfbfa;
+      --card: #ffffff;
+      --accent: #1f8f6f;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: var(--bg); color: var(--ink); }
+    body {
+      font-family: "IBM Plex Sans", "Noto Sans SC", system-ui, -apple-system, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: clamp(3.5rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem) 4rem;
+    }
+    .eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-weight: 500;
+      margin-bottom: 1.1rem;
+    }
+    h1 {
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+    }
+    .lead {
+      margin-top: 1.3rem;
+      font-size: clamp(1rem, 2.2vw, 1.18rem);
+      color: var(--muted);
+      max-width: 56ch;
+      font-weight: 300;
+    }
+    .rule {
+      height: 1px;
+      background: var(--line);
+      margin: clamp(2.6rem, 6vw, 4rem) 0 clamp(2.2rem, 5vw, 3.2rem);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: clamp(1.2rem, 3vw, 2rem);
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: clamp(1.8rem, 3.5vw, 2.6rem);
+      display: flex;
+      flex-direction: column;
+      min-height: 230px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.2s ease, transform 0.2s ease;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .card .tag {
+      font-size: 0.74rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--faint);
+      font-weight: 500;
+      margin-bottom: 1.4rem;
+    }
+    .card h2 {
+      font-size: clamp(1.5rem, 3vw, 1.9rem);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 0.8rem;
+    }
+    .card p {
+      font-size: 0.96rem;
+      color: var(--muted);
+      font-weight: 300;
+      flex: 1;
+    }
+    .card .go {
+      margin-top: 1.6rem;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.02em;
+    }
+    footer {
+      margin-top: clamp(3rem, 7vw, 5rem);
+      padding-top: 1.8rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.82rem;
+      color: var(--faint);
+      font-weight: 300;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.2rem;
+    }
+    footer a { color: var(--muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+    @media (max-width: 760px) {
+      .grid { grid-template-columns: 1fr; }
+      .card { min-height: 0; }
+    }
   </style>
 </head>
 <body>
-  <div class="progress-bar" id="progressBar"></div>
-  <div class="page-counter" id="pageCounter">01 / 15</div>
-  <div class="keyboard-hint"><kbd>&larr;</kbd> <kbd>&rarr;</kbd> 翻页</div>
+  <main class="wrap">
+    <p class="eyebrow">HANK · 公开演示集</p>
+    <h1>WebPPT</h1>
+    <p class="lead">一个仓库，收纳多场 HTML 演示。同域 path 隔离，GitHub Pages 静态托管，零构建、纯文件。</p>
 
-  <button class="nav-btn prev" id="prevBtn" aria-label="上一页">
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M19 12H5M12 19l-7-7 7-7" />
-    </svg>
-  </button>
-  <button class="nav-btn next" id="nextBtn" aria-label="下一页">
-    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M5 12h14M12 5l7 7-7 7" />
-    </svg>
-  </button>
+    <div class="rule"></div>
 
-  <div class="slides" id="slides">
-    <!-- 01 Cover -->
-    <section class="slide slide-cover" data-index="0">
-      <div class="slide-inner">
-        <div class="mondrian-bg" aria-hidden="true">
-          <div class="block red"></div>
-          <div class="block blue"></div>
-          <div class="block yellow"></div>
-          <div class="block black"></div>
-        </div>
-        <div class="content-block">
-          <h1 class="title">四种轻工具</h1>
-          <p class="subtitle">AI 时代 Builder 触达世界的瑞士军刀</p>
-          <div class="knife-hero" aria-hidden="true">
-            <svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                  <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#0f172a" flood-opacity="0.12" />
-                </filter>
-              </defs>
-              <rect x="280" y="105" width="180" height="48" rx="10" fill="#1e293b" filter="url(#shadow)" />
-              <circle cx="310" cy="129" r="5" fill="#475569" />
-              <circle cx="430" cy="129" r="5" fill="#475569" />
-              <text x="370" y="134" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="#94a3b8">GitHub</text>
-              <circle cx="280" cy="129" r="12" fill="#334155" />
-              <circle cx="280" cy="129" r="5" fill="#1e293b" />
-              <rect x="120" y="45" width="16" height="100" rx="3" fill="#c41e3a" transform="rotate(-30 200 129)" />
-              <text x="108" y="58" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" fill="#c41e3a" transform="rotate(-30 108 58)">Markdown</text>
-              <rect x="155" y="32" width="16" height="108" rx="3" fill="#0369a1" transform="rotate(-12 220 129)" />
-              <text x="162" y="28" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" fill="#0369a1" transform="rotate(-12 162 28)">HTML</text>
-              <rect x="205" y="28" width="16" height="105" rx="3" fill="#b45309" transform="rotate(6 260 129)" />
-              <text x="235" y="22" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" fill="#b45309" transform="rotate(6 235 22)">SVG</text>
-            </svg>
-          </div>
-        </div>
-      </div>
+    <section class="grid">
+      <a class="card" href="ai-weapon/">
+        <span class="tag">OPC 社群分享</span>
+        <h2>四种轻工具</h2>
+        <p>Markdown / HTML / SVG / GitHub Pages——个人创作者触达世界的瑞士军刀，不啃复杂框架也能做出网页与演示。</p>
+        <span class="go">进入 →</span>
+      </a>
+      <a class="card" href="workbuddy-finance/">
+        <span class="tag">WorkBuddy 财务专场</span>
+        <h2>智能财务实战</h2>
+        <p>从原始文件到交付成果，看 AI 如何搭手财务的六个真实任务——对账、合同、报表、报送、分析、专家团。</p>
+        <span class="go">进入 →</span>
+      </a>
     </section>
 
-    <!-- 02 Problem -->
-    <section class="slide slide-problem" data-index="1">
-      <div class="slide-inner split">
-        <div class="text-col">
-          <p class="eyebrow">创作者困境</p>
-          <h2>你的好内容，为什么没人看？</h2>
-          <p>写了三千字的方案发到群里，没人打开</p>
-          <p>做了精美PPT，对方说「能不能发个链接我手机看」</p>
-          <p class="lead">不是内容不好——是包装太重，传播太难</p>
-        </div>
-        <div class="visual-col">
-          <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
-            <rect x="30" y="50" width="150" height="180" rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" />
-            <rect x="50" y="75" width="100" height="7" rx="1" fill="#cbd5e1" />
-            <rect x="50" y="92" width="110" height="5" rx="1" fill="#e2e8f0" />
-            <rect x="50" y="104" width="90" height="5" rx="1" fill="#e2e8f0" />
-            <rect x="50" y="120" width="100" height="7" rx="1" fill="#cbd5e1" />
-            <rect x="50" y="137" width="110" height="5" rx="1" fill="#e2e8f0" />
-            <rect x="50" y="149" width="80" height="5" rx="1" fill="#e2e8f0" />
-            <rect x="55" y="175" width="50" height="20" rx="10" fill="#fee2e2" />
-            <text x="80" y="189" text-anchor="middle" font-size="8" font-weight="600" fill="#dc2626">未打开</text>
-            <text x="105" y="260" text-anchor="middle" font-size="11" fill="#94a3b8">发到群里的 PDF</text>
-            <rect x="250" y="40" width="130" height="220" rx="16" fill="#0f172a" />
-            <rect x="256" y="56" width="118" height="190" rx="4" fill="#fff" />
-            <rect x="265" y="68" width="100" height="8" rx="1" fill="#0f172a" />
-            <rect x="265" y="84" width="80" height="5" rx="1" fill="#64748b" />
-            <rect x="265" y="100" width="100" height="40" rx="4" fill="#dbeafe" />
-            <text x="315" y="124" text-anchor="middle" font-size="8" fill="#3b82f6">作品展示</text>
-            <rect x="265" y="150" width="100" height="22" rx="6" fill="#c41e3a" />
-            <text x="315" y="165" text-anchor="middle" font-size="8" font-weight="600" fill="#fff">立即查看</text>
-            <rect x="265" y="182" width="100" height="5" rx="1" fill="#64748b" />
-            <rect x="265" y="194" width="80" height="5" rx="1" fill="#94a3b8" />
-            <rect x="280" y="215" width="60" height="20" rx="10" fill="#dcfce7" />
-            <text x="310" y="229" text-anchor="middle" font-size="8" font-weight="600" fill="#16a34a">3秒打开</text>
-            <text x="315" y="280" text-anchor="middle" font-size="11" font-weight="600" fill="#c41e3a">发到群里的网址</text>
-            <path d="M188 150 L240 150" stroke="#c41e3a" stroke-width="2" stroke-dasharray="6 4" />
-            <polygon points="235,146 245,150 235,154" fill="#c41e3a" />
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 Timeline -->
-    <section class="slide" data-index="2">
-      <div class="slide-inner centered">
-        <p class="eyebrow">今天的工具</p>
-        <h2>三片刃 + 一个刀柄</h2>
-        <svg viewBox="0 0 800 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:900px;margin-top:2.5rem;">
-          <defs>
-            <linearGradient id="tl-grad" x1="0" y1="0" x2="1" y2="0">
-              <stop offset="0%" stop-color="#0369a1" />
-              <stop offset="40%" stop-color="#b45309" />
-              <stop offset="70%" stop-color="#c41e3a" />
-              <stop offset="100%" stop-color="#1e293b" />
-            </linearGradient>
-          </defs>
-          <line x1="60" y1="80" x2="740" y2="80" stroke="url(#tl-grad)" stroke-width="4" stroke-linecap="round" />
-          <circle cx="120" cy="80" r="14" fill="#0369a1" />
-          <circle cx="120" cy="80" r="6" fill="#fff" />
-          <text x="120" y="55" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="24" font-weight="700" fill="#0369a1">1993</text>
-          <text x="120" y="115" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">HTML</text>
-          <text x="120" y="138" text-anchor="middle" font-size="12" fill="#64748b">网页的底层语言</text>
-          <circle cx="320" cy="80" r="14" fill="#b45309" />
-          <circle cx="320" cy="80" r="6" fill="#fff" />
-          <text x="320" y="55" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="24" font-weight="700" fill="#b45309">2001</text>
-          <text x="320" y="115" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">SVG</text>
-          <text x="320" y="138" text-anchor="middle" font-size="12" fill="#64748b">放多大都不糊的图</text>
-          <circle cx="520" cy="80" r="14" fill="#c41e3a" />
-          <circle cx="520" cy="80" r="6" fill="#fff" />
-          <text x="520" y="55" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="24" font-weight="700" fill="#c41e3a">2004</text>
-          <text x="520" y="115" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">Markdown</text>
-          <text x="520" y="138" text-anchor="middle" font-size="12" fill="#64748b">结构化的写作方式</text>
-          <circle cx="680" cy="80" r="14" fill="#1e293b" />
-          <circle cx="680" cy="80" r="6" fill="#fff" />
-          <text x="680" y="55" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="24" font-weight="700" fill="#1e293b">2008</text>
-          <text x="680" y="115" text-anchor="middle" font-size="15" font-weight="700" fill="#0f172a">GitHub</text>
-          <text x="680" y="138" text-anchor="middle" font-size="12" fill="#64748b">全世界的代码仓库</text>
-        </svg>
-        <p class="section-lead" style="text-align:center;margin-top:2rem;">曾经程序员专属，今天被 AI 重新激活——你只需认识它们，然后让 AI 去执行</p>
-      </div>
-    </section>
-
-    <!-- 04 Markdown Intro -->
-    <section class="slide slide-tool" data-tool="markdown" data-index="3">
-      <div class="slide-inner split">
-        <div class="text-col">
-          <div class="tool-tag" style="--tool-color: #c41e3a;">结构之刃 / Markdown</div>
-          <h2>你和 AI 沟通的「普通话」</h2>
-          <p>不是编程语言——是一种标记约定，像给文字贴标签</p>
-          <p>用 # 表示标题，用 - 表示列表，用 ** 表示重点</p>
-          <p>所有 AI 工具的提示词、文档、配置文件，都在用它</p>
-          <p class="lead">学会 Markdown，就是学会了跟 AI 说话的语法</p>
-        </div>
-        <div class="visual-col">
-          <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
-            <rect x="30" y="30" width="360" height="260" rx="10" fill="#1e293b" />
-            <circle cx="55" cy="50" r="5" fill="#ef4444" />
-            <circle cx="73" cy="50" r="5" fill="#f59e0b" />
-            <circle cx="91" cy="50" r="5" fill="#22c55e" />
-            <text x="200" y="54" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#64748b">my-course.md</text>
-            <text x="50" y="85" font-family="IBM Plex Mono, monospace" font-size="11" fill="#c41e3a"># 我的商业计划</text>
-            <text x="50" y="108" font-family="IBM Plex Mono, monospace" font-size="11" fill="#7dd3fc">## 目标客户</text>
-            <text x="50" y="128" font-family="IBM Plex Mono, monospace" font-size="10" fill="#e2e8f0">- 25-35岁女性创业者</text>
-            <text x="50" y="148" font-family="IBM Plex Mono, monospace" font-size="10" fill="#e2e8f0">- 有内容产出但**缺流量**</text>
-            <text x="50" y="175" font-family="IBM Plex Mono, monospace" font-size="11" fill="#7dd3fc">## 解决方案</text>
-            <text x="50" y="195" font-family="IBM Plex Mono, monospace" font-size="10" fill="#e2e8f0">1. 个人网站搭建</text>
-            <text x="50" y="215" font-family="IBM Plex Mono, monospace" font-size="10" fill="#e2e8f0">2. SEO 基础优化</text>
-            <text x="50" y="235" font-family="IBM Plex Mono, monospace" font-size="10" fill="#e2e8f0">3. 社群引流矩阵</text>
-            <text x="50" y="262" font-family="IBM Plex Mono, monospace" font-size="10" fill="#a78bfa">> 先做出来，再慢慢改</text>
-          </svg>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 Markdown Source -->
-    <section class="slide slide-comparison" data-index="4">
-      <div class="slide-inner">
-        <div class="section-header centered">
-          <div class="tool-tag" style="--tool-color: #c41e3a;">结构之刃 / Markdown</div>
-          <h2>左边写几个符号，右边变成排版</h2>
-          <p class="section-lead">你写的不是代码，是带格式的笔记——AI 和所有工具都认识这些符号</p>
-        </div>
-        <div class="comparison">
-          <div class="panel source">
-            <div class="panel-header">
-              <span class="panel-label">源码</span>
-            </div>
-            <pre><code># 我的 AI 摄影课
-
-## 你能获得什么
-- **3天**掌握手机摄影 + AI 修图全流程
-- 零基础可学，每天只需 30 分钟
-
-## 课程大纲
-1. 手机構图与光线
-2. AI 一键修图实战
-3. 朋友圈视觉体系搭建
-
-## 往期学员评价
-> "终于知道怎么拍出好看的产品图了！"
-
-[→ 立即报名](https://example.com)</code></pre>
-          </div>
-          <div class="panel preview">
-            <div class="panel-header">
-              <span class="panel-label">渲染</span>
-            </div>
-            <div class="preview-body">
-              <h4 style="font-size:1.1rem;margin-bottom:0.6rem;">我的 AI 摄影课</h4>
-              <h5 style="font-size:0.85rem;color:var(--text);margin:0.5rem 0 0.25rem;">你能获得什么</h5>
-              <ul style="margin:0 0 0.4rem;padding-left:1.1rem;">
-                <li style="font-size:0.8rem;line-height:1.5;"><strong>3天</strong>掌握手机摄影 + AI 修图全流程</li>
-                <li style="font-size:0.8rem;line-height:1.5;">零基础可学，每天只需 30 分钟</li>
-              </ul>
-              <h5 style="font-size:0.85rem;color:var(--text);margin:0.5rem 0 0.25rem;">课程大纲</h5>
-              <ol style="margin:0 0 0.4rem;padding-left:1.25rem;">
-                <li style="font-size:0.8rem;line-height:1.5;">手机構图与光线</li>
-                <li style="font-size:0.8rem;line-height:1.5;">AI 一键修图实战</li>
-                <li style="font-size:0.8rem;line-height:1.5;">朋友圈视觉体系搭建</li>
-              </ol>
-              <blockquote style="margin:0.5rem 0;padding:0.4rem 0.8rem;border-left:3px solid var(--cta);font-size:0.75rem;color:var(--text-secondary);font-style:italic;">"终于知道怎么拍出好看的产品图了！"</blockquote>
-              <a href="#" style="display:inline-block;margin-top:0.5rem;padding:0.4rem 1rem;background:var(--cta);color:#fff;border-radius:6px;font-size:0.8rem;font-weight:600;text-decoration:none;">→ 立即报名</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 06 Markdown AI Native -->
-    <section class="slide slide-tool" data-tool="markdown" data-index="5">
-      <div class="slide-inner">
-        <div class="section-header centered">
-          <div class="tool-tag" style="--tool-color: #c41e3a;">结构之刃 / Markdown</div>
-          <h2>为什么所有 AI 都在用 Markdown？</h2>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2rem;max-width:900px;margin-left:auto;margin-right:auto;">
-          <div style="background:#1e293b;border-radius:10px;padding:1rem;">
-            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.6rem;">
-              <span style="font-size:0.7rem;color:#94a3b8;font-family:var(--mono);">ChatGPT 回复</span>
-            </div>
-            <div style="font-family:var(--mono);font-size:0.7rem;line-height:1.6;color:#e2e8f0;">
-              <span style="color:#c41e3a;"># 商业计划书</span><br/>
-              <span style="color:#7dd3fc;">## 目标客户</span><br/>
-              <span>- 25-35岁女性创业者</span><br/>
-              <span style="color:#7dd3fc;">## 解决方案</span><br/>
-              <span>1. 个人网站搭建</span><br/>
-              <span>2. SEO 基础优化</span>
-            </div>
-            <p style="font-size:0.65rem;color:#64748b;margin-top:0.5rem;">AI 说话天然就是 Markdown</p>
-          </div>
-          <div style="background:#1e293b;border-radius:10px;padding:1rem;">
-            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.6rem;">
-              <span style="font-size:0.7rem;color:#94a3b8;font-family:var(--mono);">SKILL.md</span>
-            </div>
-            <div style="font-family:var(--mono);font-size:0.7rem;line-height:1.6;color:#e2e8f0;">
-              <span style="color:#c41e3a;">---</span><br/>
-              <span style="color:#7dd3fc;">name:</span> idea-to-github-page<br/>
-              <span style="color:#c41e3a;">---</span><br/>
-              <span style="color:#c41e3a;"># 使用步骤</span><br/>
-              <span>1. Fork 项目</span><br/>
-              <span>2. 描述你的想法</span><br/>
-              <span>3. 自动部署</span>
-            </div>
-            <p style="font-size:0.65rem;color:#64748b;margin-top:0.5rem;">AI 工具的配置文件也是 Markdown</p>
-          </div>
-          <div style="background:#1e293b;border-radius:10px;padding:1rem;">
-            <div style="display:flex;align-items:center;gap:0.5rem;margin-bottom:0.6rem;">
-              <span style="font-size:0.7rem;color:#94a3b8;font-family:var(--mono);">system.md 提示词</span>
-            </div>
-            <div style="font-family:var(--mono);font-size:0.7rem;line-height:1.6;color:#e2e8f0;">
-              <span style="color:#c41e3a;"># 角色</span><br/>
-              <span>你是一个营销文案专家</span><br/>
-              <span style="color:#c41e3a;"># 规则</span><br/>
-              <span>- 用口语化表达</span><br/>
-              <span>- **重点**加粗标注</span><br/>
-              <span>- 每段不超过3句</span>
-            </div>
-            <p style="font-size:0.65rem;color:#64748b;margin-top:0.5rem;">指挥 AI 的提示词也是 Markdown</p>
-          </div>
-          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:1rem;">
-            <div style="font-size:0.75rem;font-weight:600;color:var(--text);margin-bottom:0.6rem;">写一次，到处能用</div>
-            <div style="display:flex;flex-direction:column;gap:0.4rem;">
-              <span style="font-size:0.7rem;color:var(--text-secondary);">→ 渲染成网页</span>
-              <span style="font-size:0.7rem;color:var(--text-secondary);">→ 导出成 PDF</span>
-              <span style="font-size:0.7rem;color:var(--text-secondary);">→ 发到公众号</span>
-              <span style="font-size:0.7rem;color:var(--text-secondary);">→ 做成幻灯片（就像这个）</span>
-            </div>
-            <p style="font-size:0.65rem;color:#64748b;margin-top:0.5rem;">同一份内容，不用重新排版</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 07 HTML Source -->
-    <section class="slide slide-comparison" data-index="6">
-      <div class="slide-inner">
-        <div class="section-header centered">
-          <div class="tool-tag" style="--tool-color: #0369a1;">呈现之刃 / HTML</div>
-          <h2>HTML：给内容穿上衣服</h2>
-          <p class="section-lead">Markdown 是骨架，HTML 是皮肤——文字变成网页的关键一步</p>
-        </div>
-        <div class="comparison">
-          <div class="panel source" style="background:#fafafa;border-color:#e2e8f0;color:#1e293b;">
-            <div class="panel-header" style="background:#f1f5f9;border-color:#e2e8f0;">
-              <span class="panel-label" style="color:#64748b;">源码</span>
-            </div>
-            <pre style="color:#1e293b;"><code><span style="color:#8b2252;">&lt;div</span> <span style="color:#0550ae;">class=</span><span style="color:#953800;">"hero"</span><span style="color:#8b2252;">&gt;</span>
-  <span style="color:#8b2252;">&lt;h1&gt;</span>用 AI 拍出爵士感照片<span style="color:#8b2252;">&lt;/h1&gt;</span>
-  <span style="color:#8b2252;">&lt;p&gt;</span>3天小白变达人<span style="color:#8b2252;">&lt;/p&gt;</span>
-  <span style="color:#8b2252;">&lt;img</span> <span style="color:#0550ae;">src=</span><span style="color:#953800;">"demo.jpg"</span><span style="color:#8b2252;">&gt;</span>
-<span style="color:#8b2252;">&lt;/div&gt;</span>
-
-<span style="color:#8b2252;">&lt;div</span> <span style="color:#0550ae;">class=</span><span style="color:#953800;">"features"</span><span style="color:#8b2252;">&gt;</span>
-  <span style="color:#8b2252;">&lt;div</span> <span style="color:#0550ae;">class=</span><span style="color:#953800;">"card"</span><span style="color:#8b2252;">&gt;</span>手机就能拍<span style="color:#8b2252;">&lt;/div&gt;</span>
-  <span style="color:#8b2252;">&lt;div</span> <span style="color:#0550ae;">class=</span><span style="color:#953800;">"card"</span><span style="color:#8b2252;">&gt;</span>AI一键修<span style="color:#8b2252;">&lt;/div&gt;</span>
-  <span style="color:#8b2252;">&lt;div</span> <span style="color:#0550ae;">class=</span><span style="color:#953800;">"card"</span><span style="color:#8b2252;">&gt;</span>零成本<span style="color:#8b2252;">&lt;/div&gt;</span>
-<span style="color:#8b2252;">&lt;/div&gt;</span>
-
-<span style="color:#8b2252;">&lt;button</span> <span style="color:#0550ae;">class=</span><span style="color:#953800;">"cta"</span><span style="color:#8b2252;">&gt;</span>
-  立即加入 ¥199
-<span style="color:#8b2252;">&lt;/button&gt;</span></code></pre>
-          </div>
-          <div class="panel preview">
-            <div class="panel-header">
-              <span class="panel-label">渲染</span>
-            </div>
-            <div class="preview-body html-preview">
-              <div style="background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 100%);border-radius:8px;padding:1rem;margin-bottom:0.75rem;text-align:center;">
-                <h1 style="font-size:1rem;margin-bottom:0.3rem;color:#fff;font-weight:700;">用 AI 拍出爵士感照片</h1>
-                <p style="margin:0 0 0.5rem;color:#94a3b8;font-size:0.75rem;">3天小白变达人</p>
-                <div style="width:100%;height:45px;background:rgba(255,255,255,0.1);border-radius:4px;display:flex;align-items:center;justify-content:center;color:#64748b;font-size:0.7rem;">作品展示图</div>
-              </div>
-              <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.4rem;margin-bottom:0.75rem;">
-                <div style="background:#f0fdf4;border-radius:6px;padding:0.4rem;text-align:center;font-size:0.65rem;">手机就能拍</div>
-                <div style="background:#eff6ff;border-radius:6px;padding:0.4rem;text-align:center;font-size:0.65rem;">AI一键修</div>
-                <div style="background:#fefce8;border-radius:6px;padding:0.4rem;text-align:center;font-size:0.65rem;">零成本</div>
-              </div>
-              <button style="width:100%;padding:0.6rem;background:linear-gradient(135deg,#c41e3a,#e11d48);color:#fff;border:none;border-radius:8px;font-size:0.8rem;font-weight:700;cursor:pointer;letter-spacing:0.05em;">立即加入 ¥199</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 08 HTML Rich Media -->
-    <section class="slide slide-html-media" data-index="7">
-      <div class="slide-inner">
-        <div class="section-header centered">
-          <div class="tool-tag" style="--tool-color: #0369a1;">呈现之刃 / HTML</div>
-          <h2>一个网页能装下所有东西</h2>
-          <p class="section-lead">你想展示的一切，都能塞进一个链接里</p>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1.5fr;gap:2.5rem;margin-top:1rem;align-items:start;width:100%;">
-          <div style="display:flex;flex-direction:column;gap:0.8rem;">
-            <div style="display:flex;align-items:center;gap:0.8rem;padding:0.8rem 1.2rem;background:#eff6ff;border-radius:10px;border-left:4px solid #3b82f6;">
-              <span style="font-size:1.4rem;">T</span>
-              <div><span style="font-size:0.95rem;font-weight:600;display:block;">文字排版</span><span style="font-size:0.75rem;color:var(--text-muted);">标题、段落、列表、引用</span></div>
-            </div>
-            <div style="display:flex;align-items:center;gap:0.8rem;padding:0.8rem 1.2rem;background:#f0fdf4;border-radius:10px;border-left:4px solid #22c55e;">
-              <span style="font-size:1.4rem;">&#9638;</span>
-              <div><span style="font-size:0.95rem;font-weight:600;display:block;">图片与配色</span><span style="font-size:0.75rem;color:var(--text-muted);">产品图、Banner、品牌色</span></div>
-            </div>
-            <div style="display:flex;align-items:center;gap:0.8rem;padding:0.8rem 1.2rem;background:#fef3c7;border-radius:10px;border-left:4px solid #f59e0b;">
-              <span style="font-size:1.4rem;">&#9654;</span>
-              <div><span style="font-size:0.95rem;font-weight:600;display:block;">视频嵌入</span><span style="font-size:0.75rem;color:var(--text-muted);">YouTube / B站 / 自托管</span></div>
-            </div>
-            <div style="display:flex;align-items:center;gap:0.8rem;padding:0.8rem 1.2rem;background:#fce7f3;border-radius:10px;border-left:4px solid #ec4899;">
-              <span style="font-size:1.4rem;">&#9998;</span>
-              <div><span style="font-size:0.95rem;font-weight:600;display:block;">表单交互</span><span style="font-size:0.75rem;color:var(--text-muted);">报名、预约、问卷收集</span></div>
-            </div>
-            <div style="display:flex;align-items:center;gap:0.8rem;padding:0.8rem 1.2rem;background:#f5f3ff;border-radius:10px;border-left:4px solid #8b5cf6;">
-              <span style="font-size:1.4rem;">&#9775;</span>
-              <div><span style="font-size:0.95rem;font-weight:600;display:block;">动画与特效</span><span style="font-size:0.75rem;color:var(--text-muted);">滚动渐入、悬停放大、计数器</span></div>
-            </div>
-          </div>
-          <div class="browser-mockup large">
-            <div class="browser-header">
-              <span></span><span></span><span></span>
-              <div class="browser-url">my-course.github.io</div>
-            </div>
-            <div class="browser-body" style="padding:0;overflow:hidden;">
-              <div style="background:linear-gradient(135deg,#1e3a5f,#0f172a);padding:1.2rem 1.5rem;text-align:center;">
-                <p style="font-size:0.7rem;color:#94a3b8;margin:0 0 0.3rem;">AI 摄影实战课</p>
-                <h4 style="font-size:1.1rem;color:#fff;margin:0 0 0.5rem;">3天拍出爵士感照片</h4>
-                <div style="display:flex;gap:0.4rem;justify-content:center;">
-                  <div style="width:72px;height:48px;border-radius:6px;background:linear-gradient(135deg,#f97316,#f59e0b);"></div>
-                  <div style="width:72px;height:48px;border-radius:6px;background:linear-gradient(135deg,#06b6d4,#3b82f6);"></div>
-                  <div style="width:72px;height:48px;border-radius:6px;background:linear-gradient(135deg,#8b5cf6,#ec4899);"></div>
-                </div>
-              </div>
-              <div style="padding:0.8rem 1.2rem;background:#f8fafc;border-bottom:1px solid #e2e8f0;">
-                <div style="position:relative;background:#000;border-radius:8px;height:65px;display:flex;align-items:center;justify-content:center;">
-                  <div style="width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.9);display:flex;align-items:center;justify-content:center;">
-                    <span style="font-size:0.8rem;margin-left:2px;">&#9654;</span>
-                  </div>
-                  <span style="position:absolute;bottom:5px;right:8px;font-size:0.6rem;color:#94a3b8;">02:34</span>
-                  <div style="position:absolute;bottom:0;left:0;right:0;height:4px;background:#334155;border-radius:0 0 8px 8px;">
-                    <div style="width:35%;height:100%;background:#c41e3a;border-radius:0 0 0 8px;"></div>
-                  </div>
-                </div>
-                <p style="font-size:0.7rem;color:var(--text-muted);margin:0.4rem 0 0;text-align:center;">嵌入视频：第一课免费试看</p>
-              </div>
-              <div style="padding:0.8rem 1.2rem;">
-                <div style="display:flex;gap:0.5rem;margin-bottom:0.6rem;">
-                  <input type="text" placeholder="你的名字" style="flex:1;padding:0.4rem 0.6rem;border:1px solid #e2e8f0;border-radius:6px;font-size:0.7rem;outline:none;" readonly />
-                  <input type="text" placeholder="微信号" style="flex:1;padding:0.4rem 0.6rem;border:1px solid #e2e8f0;border-radius:6px;font-size:0.7rem;outline:none;" readonly />
-                </div>
-                <div style="text-align:center;">
-                  <span style="display:inline-block;padding:0.45rem 1.5rem;background:linear-gradient(135deg,#c41e3a,#e11d48);color:#fff;border-radius:8px;font-size:0.75rem;font-weight:600;">立即报名 ¥199</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 09 SVG Intro -->
-    <section class="slide slide-tool" data-tool="svg" data-index="8">
-      <div class="slide-inner split reverse">
-        <div class="visual-col">
-          <svg viewBox="0 0 420 320" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="210" cy="160" r="110" fill="none" stroke="#e2e8f0" stroke-width="20" />
-            <circle cx="210" cy="160" r="110" fill="none" stroke="#3b82f6" stroke-width="20" stroke-dasharray="207 693" stroke-dashoffset="0" stroke-linecap="round" />
-            <circle cx="210" cy="160" r="110" fill="none" stroke="#f59e0b" stroke-width="20" stroke-dasharray="138 693" stroke-dashoffset="-207" stroke-linecap="round" />
-            <circle cx="210" cy="160" r="110" fill="none" stroke="#10b981" stroke-width="20" stroke-dasharray="173 693" stroke-dashoffset="-345" stroke-linecap="round" />
-            <circle cx="210" cy="160" r="110" fill="none" stroke="#c41e3a" stroke-width="20" stroke-dasharray="105 693" stroke-dashoffset="-518" stroke-linecap="round" />
-            <text x="210" y="152" text-anchor="middle" font-size="28" font-weight="700" fill="#0f172a">本周</text>
-            <text x="210" y="178" text-anchor="middle" font-size="13" fill="#64748b">内容产出分布</text>
-            <circle cx="340" cy="80" r="6" fill="#3b82f6" />
-            <text x="352" y="84" font-size="10" fill="#475569">文章 30%</text>
-            <circle cx="340" cy="105" r="6" fill="#f59e0b" />
-            <text x="352" y="109" font-size="10" fill="#475569">视频 20%</text>
-            <circle cx="340" cy="130" r="6" fill="#10b981" />
-            <text x="352" y="134" font-size="10" fill="#475569">图文 25%</text>
-            <circle cx="340" cy="155" r="6" fill="#c41e3a" />
-            <text x="352" y="159" font-size="10" fill="#475569">其他 15%</text>
-          </svg>
-        </div>
-        <div class="text-col">
-          <div class="tool-tag" style="--tool-color: #b45309;">图形之刃 / SVG</div>
-          <h2>让 AI 帮你画图，不花钱、无版权</h2>
-          <p>流程图、对比图、数据图——你用嘴说，AI 用 SVG 画</p>
-          <p>矢量格式，手机电脑大屏都清晰；不用找设计师，不用买图库</p>
-          <p class="lead">你拥有了一个随叫随到、不收费的插画师</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- 10 SVG Source -->
-    <section class="slide slide-comparison" data-index="9">
-      <div class="slide-inner">
-        <div class="section-header centered">
-          <div class="tool-tag" style="--tool-color: #b45309;">图形之刃 / SVG</div>
-          <h2>SVG：AI 画图的「交付格式」</h2>
-          <p class="section-lead">你不用看懂代码——这段代码就是一张图，改文字改颜色 AI 三秒搞定</p>
-        </div>
-        <div class="comparison">
-          <div class="panel source" style="background:#fdf6e3;border-color:#eee8d5;color:#657b83;">
-            <div class="panel-header" style="background:#eee8d5;border-color:#ddd6c1;">
-              <span class="panel-label" style="color:#93a1a1;">源码</span>
-            </div>
-            <pre style="color:#657b83;"><code><span style="color:#2aa198;">&lt;svg</span> <span style="color:#268bd2;">viewBox=</span><span style="color:#cb4b16;">"0 0 280 200"</span><span style="color:#2aa198;">&gt;</span>
-  <span style="color:#93a1a1;">&lt;!-- 漏斗图：客户转化路径 --&gt;</span>
-  <span style="color:#2aa198;">&lt;polygon</span> <span style="color:#268bd2;">points=</span><span style="color:#cb4b16;">"40,20 240,20 200,70 80,70"</span>
-    <span style="color:#268bd2;">fill=</span><span style="color:#859900;">"#dbeafe"</span> <span style="color:#2aa198;">/&gt;</span>
-  <span style="color:#2aa198;">&lt;polygon</span> <span style="color:#268bd2;">points=</span><span style="color:#cb4b16;">"80,75 200,75 180,125 100,125"</span>
-    <span style="color:#268bd2;">fill=</span><span style="color:#859900;">"#93c5fd"</span> <span style="color:#2aa198;">/&gt;</span>
-  <span style="color:#2aa198;">&lt;polygon</span> <span style="color:#268bd2;">points=</span><span style="color:#cb4b16;">"100,130 180,130 165,180 115,180"</span>
-    <span style="color:#268bd2;">fill=</span><span style="color:#859900;">"#3b82f6"</span> <span style="color:#2aa198;">/&gt;</span>
-  <span style="color:#2aa198;">&lt;text</span> <span style="color:#268bd2;">x=</span><span style="color:#cb4b16;">"140"</span> <span style="color:#268bd2;">y=</span><span style="color:#cb4b16;">"50"</span><span style="color:#2aa198;">&gt;</span>访问 1000人<span style="color:#2aa198;">&lt;/text&gt;</span>
-  <span style="color:#2aa198;">&lt;text</span> <span style="color:#268bd2;">x=</span><span style="color:#cb4b16;">"140"</span> <span style="color:#268bd2;">y=</span><span style="color:#cb4b16;">"105"</span><span style="color:#2aa198;">&gt;</span>咨询 200人<span style="color:#2aa198;">&lt;/text&gt;</span>
-  <span style="color:#2aa198;">&lt;text</span> <span style="color:#268bd2;">x=</span><span style="color:#cb4b16;">"140"</span> <span style="color:#268bd2;">y=</span><span style="color:#cb4b16;">"160"</span> <span style="color:#268bd2;">fill=</span><span style="color:#859900;">"#fff"</span><span style="color:#2aa198;">&gt;</span>
-    成交 30人<span style="color:#2aa198;">&lt;/text&gt;</span>
-<span style="color:#2aa198;">&lt;/svg&gt;</span></code></pre>
-          </div>
-          <div class="panel preview">
-            <div class="panel-header">
-              <span class="panel-label">渲染</span>
-            </div>
-            <div class="preview-body svg-preview">
-              <svg viewBox="0 0 280 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;height:auto;">
-                <defs>
-                  <linearGradient id="funnel1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dbeafe"/><stop offset="100%" stop-color="#bfdbfe"/></linearGradient>
-                  <linearGradient id="funnel2" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#93c5fd"/><stop offset="100%" stop-color="#60a5fa"/></linearGradient>
-                  <linearGradient id="funnel3" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#3b82f6"/><stop offset="100%" stop-color="#1d4ed8"/></linearGradient>
-                </defs>
-                <polygon points="40,20 240,20 200,70 80,70" fill="url(#funnel1)" />
-                <polygon points="80,75 200,75 180,125 100,125" fill="url(#funnel2)" />
-                <polygon points="100,130 180,130 165,180 115,180" fill="url(#funnel3)" />
-                <text x="140" y="50" text-anchor="middle" font-size="11" font-weight="600" fill="#1e3a5f">访问 1000 人</text>
-                <text x="140" y="105" text-anchor="middle" font-size="11" font-weight="600" fill="#1e3a5f">咨询 200 人</text>
-                <text x="140" y="160" text-anchor="middle" font-size="11" font-weight="700" fill="#ffffff">成交 30 人</text>
-                <text x="255" y="50" font-size="9" fill="#64748b">100%</text>
-                <text x="255" y="105" font-size="9" fill="#64748b">20%</text>
-                <text x="255" y="160" font-size="9" fill="#3b82f6" font-weight="700">3%</text>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 11 GitHub Intro -->
-    <section class="slide slide-tool" data-tool="github" data-index="10">
-      <div class="slide-inner split">
-        <div class="text-col">
-          <div class="tool-tag" style="--tool-color: #0f172a;">刀柄 / GitHub</div>
-          <h2>全世界 Builder 的宝藏库</h2>
-          <p>一键发布网站，免费、不限流量、自动生效</p>
-          <p>每次修改都有记录——别人能看到你来时的路</p>
-          <p class="lead">全世界最优秀的人都在这，你的作品也该在</p>
-        </div>
-        <div class="visual-col">
-          <div class="github-card">
-            <div class="github-header">
-              <div class="github-avatar">YOU</div>
-              <div class="github-info">
-                <span class="github-name">your-idea</span>
-                <span class="github-desc">公开作品集 · 持续更新中</span>
-              </div>
-            </div>
-            <div class="github-contributions">
-              <span class="contrib-title">产出记录</span>
-              <div class="contrib-grid" aria-hidden="true">
-                <div class="contrib-week"><span class="contrib-day level-1"></span><span class="contrib-day level-2"></span><span class="contrib-day level-3"></span><span class="contrib-day level-1"></span><span class="contrib-day level-0"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span></div>
-                <div class="contrib-week"><span class="contrib-day level-2"></span><span class="contrib-day level-3"></span><span class="contrib-day level-4"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span><span class="contrib-day level-3"></span><span class="contrib-day level-2"></span></div>
-                <div class="contrib-week"><span class="contrib-day level-1"></span><span class="contrib-day level-0"></span><span class="contrib-day level-2"></span><span class="contrib-day level-3"></span><span class="contrib-day level-2"></span><span class="contrib-day level-4"></span><span class="contrib-day level-3"></span></div>
-                <div class="contrib-week"><span class="contrib-day level-3"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span><span class="contrib-day level-0"></span><span class="contrib-day level-2"></span><span class="contrib-day level-3"></span><span class="contrib-day level-2"></span></div>
-                <div class="contrib-week"><span class="contrib-day level-2"></span><span class="contrib-day level-4"></span><span class="contrib-day level-3"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span></div>
-                <div class="contrib-week"><span class="contrib-day level-1"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span><span class="contrib-day level-3"></span><span class="contrib-day level-4"></span><span class="contrib-day level-3"></span><span class="contrib-day level-2"></span></div>
-                <div class="contrib-week"><span class="contrib-day level-0"></span><span class="contrib-day level-1"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span><span class="contrib-day level-0"></span></div>
-                <div class="contrib-week"><span class="contrib-day level-2"></span><span class="contrib-day level-3"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span><span class="contrib-day level-0"></span><span class="contrib-day level-1"></span><span class="contrib-day level-2"></span></div>
-                <div class="contrib-week"><span class="contrib-day level-3"></span><span class="contrib-day level-4"></span><span class="contrib-day level-3"></span><span class="contrib-day level-2"></span><span class="contrib-day level-3"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span></div>
-                <div class="contrib-week"><span class="contrib-day level-1"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span><span class="contrib-day level-3"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span><span class="contrib-day level-2"></span></div>
-                <div class="contrib-week"><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span><span class="contrib-day level-3"></span><span class="contrib-day level-4"></span><span class="contrib-day level-3"></span><span class="contrib-day level-2"></span><span class="contrib-day level-3"></span></div>
-                <div class="contrib-week"><span class="contrib-day level-1"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span><span class="contrib-day level-0"></span><span class="contrib-day level-1"></span><span class="contrib-day level-2"></span><span class="contrib-day level-1"></span></div>
-              </div>
-              <div class="contrib-legend">
-                <span>少</span>
-                <span class="legend-day level-0"></span>
-                <span class="legend-day level-1"></span>
-                <span class="legend-day level-2"></span>
-                <span class="legend-day level-3"></span>
-                <span class="legend-day level-4"></span>
-                <span>多</span>
-              </div>
-            </div>
-            <div class="github-stats">
-              <div class="github-stat"><strong>12</strong><span>Projects</span></div>
-              <div class="github-stat"><strong>48</strong><span>Commits</span></div>
-              <div class="github-stat"><strong>1</strong><span>URL</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 12 NEW: 国内方案 -->
-    <section class="slide" data-index="11">
-      <div class="slide-inner centered">
-        <p class="eyebrow">国内落地</p>
-        <h2>同样的路，国内也能走</h2>
-        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-top:2.5rem;width:100%;">
-          <!-- Gitee -->
-          <div style="border-radius:14px;border:2px solid #c41e3a;padding:2rem 1.5rem;text-align:center;background:linear-gradient(180deg,#fff5f5,#fff);">
-            <span style="display:inline-block;width:56px;height:56px;line-height:56px;border-radius:50%;background:#c41e3a;color:#fff;font-family:var(--mono);font-size:1.5rem;font-weight:700;">G</span>
-            <h3 style="font-size:1.1rem;margin:1rem 0 0.3rem;">Gitee</h3>
-            <p style="font-size:0.9rem;color:#64748b;margin:0 0 0.8rem;">存代码、记录成长</p>
-            <span style="font-family:var(--mono);font-size:0.8rem;color:#c41e3a;font-weight:500;">gitee.com</span>
-          </div>
-          <!-- EdgeOne -->
-          <div style="border-radius:14px;border:2px solid #0369a1;padding:2rem 1.5rem;text-align:center;background:linear-gradient(180deg,#eff6ff,#fff);">
-            <span style="display:inline-block;width:56px;height:56px;line-height:56px;border-radius:50%;background:#0369a1;color:#fff;font-family:var(--mono);font-size:1.5rem;font-weight:700;">E</span>
-            <h3 style="font-size:1.1rem;margin:1rem 0 0.3rem;">EdgeOne Makers</h3>
-            <p style="font-size:0.9rem;color:#64748b;margin:0 0 0.8rem;">代码变网址</p>
-            <span style="font-family:var(--mono);font-size:0.75rem;color:#0369a1;font-weight:500;">cloud.tencent.com/product/teo</span>
-          </div>
-          <!-- SkillHub -->
-          <div style="border-radius:14px;border:2px solid #7c3aed;padding:2rem 1.5rem;text-align:center;background:linear-gradient(180deg,#f5f3ff,#fff);">
-            <span style="display:inline-block;width:56px;height:56px;line-height:56px;border-radius:50%;background:#7c3aed;color:#fff;font-family:var(--mono);font-size:1.5rem;font-weight:700;">S</span>
-            <h3 style="font-size:1.1rem;margin:1rem 0 0.3rem;">SkillHub</h3>
-            <p style="font-size:0.9rem;color:#64748b;margin:0 0 0.8rem;">找现成的好工具</p>
-            <span style="font-family:var(--mono);font-size:0.8rem;color:#7c3aed;font-weight:500;">skillhub.cn</span>
-          </div>
-        </div>
-        <!-- Prompt -->
-        <div style="margin-top:2rem;padding:1rem 1.5rem;background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;width:100%;max-width:800px;">
-          <span style="font-family:var(--mono);font-size:0.65rem;color:#94a3b8;text-transform:uppercase;letter-spacing:0.1em;">跟 AI 说</span>
-          <p style="font-family:var(--mono);font-size:0.75rem;color:#0f172a;margin:0.4rem 0 0;line-height:1.6;white-space:nowrap;">我有做好的网页，请教我怎么上传到 Gitee 并通过腾讯云 EdgeOne 部署上线</p>
-        </div>
-        <p style="font-size:0.75rem;color:#94a3b8;margin-top:0.8rem;">EdgeOne Makers 有免费版，额度以官网为准</p>
-      </div>
-    </section>
-
-    <!-- 13 Workflow (with prompt examples) -->
-    <section class="slide" data-index="12">
-      <div class="slide-inner centered">
-        <h2>想法到网址，四步搞定</h2>
-        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:2rem;width:100%;">
-          <!-- Step 1: M -->
-          <div style="border-radius:14px;border:2px solid #c41e3a;padding:1.5rem 1.2rem;text-align:center;background:linear-gradient(180deg,#fff5f5,#fff);">
-            <span style="display:inline-block;width:48px;height:48px;line-height:48px;border-radius:50%;background:#c41e3a;color:#fff;font-family:var(--mono);font-size:1.3rem;font-weight:700;">M</span>
-            <h3 style="font-size:1rem;margin:0.8rem 0 0.3rem;">梳理结构</h3>
-            <p style="font-size:0.8rem;color:#64748b;margin:0 0 0.6rem;">用 Markdown 把想法写成有层级的文档</p>
-            <div style="background:#f8fafc;border-radius:8px;padding:0.5rem 0.6rem;font-family:var(--mono);font-size:0.6rem;color:#334155;text-align:left;line-height:1.6;">
-              # 我的课程<br/> ## 学什么<br/> ## 谁适合<br/> ## 怎么报名
-            </div>
-            <div style="margin-top:0.6rem;padding:0.5rem 0.6rem;background:#fef2f2;border-radius:6px;font-family:var(--mono);font-size:0.55rem;color:#64748b;text-align:left;line-height:1.5;">
-              <span style="color:#94a3b8;font-weight:600;">跟AI说：</span>帮我用 Markdown 列一个大纲：我要做一个XX的介绍页，包含XX、XX、XX几个部分
-            </div>
-          </div>
-          <!-- Step 2: H -->
-          <div style="border-radius:14px;border:2px solid #0369a1;padding:1.5rem 1.2rem;text-align:center;background:linear-gradient(180deg,#eff6ff,#fff);">
-            <span style="display:inline-block;width:48px;height:48px;line-height:48px;border-radius:50%;background:#0369a1;color:#fff;font-family:var(--mono);font-size:1.3rem;font-weight:700;">H</span>
-            <h3 style="font-size:1rem;margin:0.8rem 0 0.3rem;">生成页面</h3>
-            <p style="font-size:0.8rem;color:#64748b;margin:0 0 0.6rem;">AI 把 Markdown 变成带设计的 HTML 网页</p>
-            <div style="background:#f8fafc;border-radius:8px;padding:0.6rem;font-size:0.6rem;color:#334155;text-align:left;">
-              <div style="height:10px;width:100%;background:linear-gradient(90deg,#0369a1,#0ea5e9);border-radius:3px;margin-bottom:4px;"></div>
-              <div style="height:6px;width:70%;background:#e2e8f0;border-radius:2px;margin-bottom:3px;"></div>
-              <div style="height:6px;width:85%;background:#e2e8f0;border-radius:2px;margin-bottom:3px;"></div>
-              <div style="height:14px;width:50%;background:#c41e3a;border-radius:4px;margin-top:6px;"></div>
-            </div>
-            <div style="margin-top:0.6rem;padding:0.5rem 0.6rem;background:#eff6ff;border-radius:6px;font-family:var(--mono);font-size:0.55rem;color:#64748b;text-align:left;line-height:1.5;">
-              <span style="color:#94a3b8;font-weight:600;">跟AI说：</span>把这份 Markdown 变成一个好看的网页，要有导航、大图、卡片介绍区
-            </div>
-          </div>
-          <!-- Step 3: S -->
-          <div style="border-radius:14px;border:2px solid #b45309;padding:1.5rem 1.2rem;text-align:center;background:linear-gradient(180deg,#fffbeb,#fff);">
-            <span style="display:inline-block;width:48px;height:48px;line-height:48px;border-radius:50%;background:#b45309;color:#fff;font-family:var(--mono);font-size:1.3rem;font-weight:700;">S</span>
-            <h3 style="font-size:1rem;margin:0.8rem 0 0.3rem;">补充图形</h3>
-            <p style="font-size:0.8rem;color:#64748b;margin:0 0 0.6rem;">让 AI 画图表、Logo、图标，插入页面</p>
-            <div style="background:#f8fafc;border-radius:8px;padding:0.6rem;text-align:center;">
-              <svg viewBox="0 0 80 50" style="width:100%;max-width:80px;" xmlns="http://www.w3.org/2000/svg">
-                <rect x="5" y="5" width="70" height="40" rx="4" fill="none" stroke="#b45309" stroke-width="1.5"/>
-                <circle cx="25" cy="25" r="8" fill="#fde68a"/>
-                <polygon points="40,38 55,18 70,38" fill="#b45309" opacity="0.5"/>
-              </svg>
-            </div>
-            <div style="margin-top:0.6rem;padding:0.5rem 0.6rem;background:#fffbeb;border-radius:6px;font-family:var(--mono);font-size:0.55rem;color:#64748b;text-align:left;line-height:1.5;">
-              <span style="color:#94a3b8;font-weight:600;">跟AI说：</span>帮我画一个XX的示意图，SVG格式，配色用蓝色系
-            </div>
-          </div>
-          <!-- Step 4: G -->
-          <div style="border-radius:14px;border:2px solid #0f172a;padding:1.5rem 1.2rem;text-align:center;background:linear-gradient(180deg,#f1f5f9,#fff);">
-            <span style="display:inline-block;width:48px;height:48px;line-height:48px;border-radius:50%;background:#0f172a;color:#fff;font-family:var(--mono);font-size:1.3rem;font-weight:700;">G</span>
-            <h3 style="font-size:1rem;margin:0.8rem 0 0.3rem;">发布上线</h3>
-            <p style="font-size:0.8rem;color:#64748b;margin:0 0 0.6rem;">Push 到 GitHub，自动获得一个网址</p>
-            <div style="background:#f8fafc;border-radius:8px;padding:0.6rem;font-family:var(--mono);font-size:0.55rem;color:#16a34a;text-align:center;">
-              &#10003; 已发布<br/>
-              <span style="color:#64748b;">your-name.github.io</span>
-            </div>
-            <div style="margin-top:0.6rem;padding:0.5rem 0.6rem;background:#f1f5f9;border-radius:6px;font-family:var(--mono);font-size:0.55rem;color:#64748b;text-align:left;line-height:1.5;">
-              <span style="color:#94a3b8;font-weight:600;">跟AI说：</span>教我怎么把这些文件上传到 GitHub 并开启 Pages
-            </div>
-          </div>
-        </div>
-        <p class="section-lead" style="text-align:center;margin-top:1.5rem;">每次修改都自动更新，不用重新发文件给任何人</p>
-        <p style="font-size:0.8rem;color:#94a3b8;margin-top:0.5rem;">想偷懒？最后一页有个 Skill，帮你四步跑通</p>
-      </div>
-    </section>
-
-    <!-- 14 Before / After -->
-    <section class="slide" data-index="13" style="padding:0 !important;overflow:hidden;">
-      <div style="display:grid;grid-template-columns:1fr 1fr;height:100%;width:100%;">
-        <div style="background:linear-gradient(180deg,#fff 0%,#fef2f2 100%);padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid #fecaca;">
-          <span style="font-family:var(--mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;color:#dc2626;margin-bottom:1.2rem;">传统方式</span>
-          <h3 style="font-size:1.6rem;color:#0f172a;margin-bottom:2rem;font-weight:700;">发文件、等别人下载</h3>
-          <div style="display:flex;flex-direction:column;gap:1.2rem;">
-            <div style="display:flex;align-items:center;gap:0.8rem;">
-              <span style="width:32px;height:32px;border-radius:50%;background:#fef2f2;border:2px solid #fecaca;display:flex;align-items:center;justify-content:center;color:#dc2626;font-size:0.9rem;font-weight:700;flex-shrink:0;">&#10005;</span>
-              <span style="color:#334155;font-size:1.05rem;">打开率低，加载15秒人已经走了</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:0.8rem;">
-              <span style="width:32px;height:32px;border-radius:50%;background:#fef2f2;border:2px solid #fecaca;display:flex;align-items:center;justify-content:center;color:#dc2626;font-size:0.9rem;font-weight:700;flex-shrink:0;">&#10005;</span>
-              <span style="color:#334155;font-size:1.05rem;">手机打不开、样式乱、格式不兼容</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:0.8rem;">
-              <span style="width:32px;height:32px;border-radius:50%;background:#fef2f2;border:2px solid #fecaca;display:flex;align-items:center;justify-content:center;color:#dc2626;font-size:0.9rem;font-weight:700;flex-shrink:0;">&#10005;</span>
-              <span style="color:#334155;font-size:1.05rem;">改了得重新发，无法追踪谁看了</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:0.8rem;">
-              <span style="width:32px;height:32px;border-radius:50%;background:#fef2f2;border:2px solid #fecaca;display:flex;align-items:center;justify-content:center;color:#dc2626;font-size:0.9rem;font-weight:700;flex-shrink:0;">&#10005;</span>
-              <span style="color:#334155;font-size:1.05rem;">搜索引擎永远找不到你</span>
-            </div>
-          </div>
-        </div>
-        <div style="background:linear-gradient(180deg,#fff 0%,#f0fdf4 100%);padding:4rem 3.5rem;display:flex;flex-direction:column;justify-content:center;">
-          <span style="font-family:var(--mono);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.15em;color:#16a34a;margin-bottom:1.2rem;">更轻量的触达</span>
-          <h3 style="font-size:1.6rem;color:#0f172a;margin-bottom:2rem;font-weight:700;">一个网址，随时随地</h3>
-          <div style="display:flex;flex-direction:column;gap:1.2rem;">
-            <div style="display:flex;align-items:center;gap:0.8rem;">
-              <span style="width:32px;height:32px;border-radius:50%;background:#f0fdf4;border:2px solid #bbf7d0;display:flex;align-items:center;justify-content:center;color:#16a34a;font-size:0.9rem;font-weight:700;flex-shrink:0;">&#10003;</span>
-              <span style="color:#334155;font-size:1.05rem;">3秒打开，手机电脑平板通吃</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:0.8rem;">
-              <span style="width:32px;height:32px;border-radius:50%;background:#f0fdf4;border:2px solid #bbf7d0;display:flex;align-items:center;justify-content:center;color:#16a34a;font-size:0.9rem;font-weight:700;flex-shrink:0;">&#10003;</span>
-              <span style="color:#334155;font-size:1.05rem;">改完自动生效，不用重新发</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:0.8rem;">
-              <span style="width:32px;height:32px;border-radius:50%;background:#f0fdf4;border:2px solid #bbf7d0;display:flex;align-items:center;justify-content:center;color:#16a34a;font-size:0.9rem;font-weight:700;flex-shrink:0;">&#10003;</span>
-              <span style="color:#334155;font-size:1.05rem;">可被 Google 收录，陌生人也能找到你</span>
-            </div>
-            <div style="display:flex;align-items:center;gap:0.8rem;">
-              <span style="width:32px;height:32px;border-radius:50%;background:#f0fdf4;border:2px solid #bbf7d0;display:flex;align-items:center;justify-content:center;color:#16a34a;font-size:0.9rem;font-weight:700;flex-shrink:0;">&#10003;</span>
-              <span style="color:#334155;font-size:1.05rem;">7x24 在线，永不过期，替你打工</span>
-            </div>
-          </div>
-          <div style="display:flex;gap:0.6rem;margin-top:2rem;flex-wrap:wrap;">
-            <span style="padding:0.3rem 0.8rem;background:#dcfce7;border-radius:20px;font-size:0.7rem;color:#166534;font-weight:500;">图文视频全支持</span>
-            <span style="padding:0.3rem 0.8rem;background:#dbeafe;border-radius:20px;font-size:0.7rem;color:#1e40af;font-weight:500;">任何设备通吃</span>
-            <span style="padding:0.3rem 0.8rem;background:#fef3c7;border-radius:20px;font-size:0.7rem;color:#92400e;font-weight:500;">可被搜索引擎收录</span>
-            <span style="padding:0.3rem 0.8rem;background:#f3e8ff;border-radius:20px;font-size:0.7rem;color:#6b21a8;font-weight:500;">持续沉淀作品集</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 15 Closing -->
-    <section class="slide slide-end" data-index="14">
-      <div class="slide-inner centered">
-        <h2>去探索，去创造，去被看见</h2>
-        <p class="section-lead" style="text-align:center;margin-bottom:2.5rem;">AI 时代的 Builder，不缺想法——缺的是让想法落地的最后一步</p>
-        <div class="contact-row">
-          <div class="contact-item">
-            <div class="contact-frame">
-              <img src="assets/qrcode-skill.png" alt="idea-to-github-page skill" />
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-frame">
-              <img src="assets/qrcode-wechat.jpg" alt="公众号：算力白肉" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <script>
-  (function() {
-    var slides = document.getElementById('slides');
-    var prevBtn = document.getElementById('prevBtn');
-    var nextBtn = document.getElementById('nextBtn');
-    var progressBar = document.getElementById('progressBar');
-    var pageCounter = document.getElementById('pageCounter');
-    var totalSlides = 15;
-    var current = 0;
-    var touchStartX = 0;
-
-    function init() {
-      update();
-      bindEvents();
-      document.querySelectorAll('.slide')[current].classList.add('active');
-    }
-
-    function goTo(index) {
-      if (index < 0 || index >= totalSlides) return;
-      var els = document.querySelectorAll('.slide');
-      els[current].classList.remove('active');
-      current = index;
-      els[current].classList.add('active');
-      update();
-    }
-
-    function next() { goTo(current + 1); }
-    function prev() { goTo(current - 1); }
-
-    function update() {
-      slides.style.transform = 'translateX(-' + (current * 100) + 'vw)';
-      progressBar.style.width = ((current + 1) / totalSlides * 100) + '%';
-      pageCounter.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
-      prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === totalSlides - 1;
-    }
-
-    function bindEvents() {
-      prevBtn.addEventListener('click', prev);
-      nextBtn.addEventListener('click', next);
-      document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
-        else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
-        else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
-        else if (e.key === 'End') { e.preventDefault(); goTo(totalSlides - 1); }
-      });
-      document.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-      document.addEventListener('touchend', function(e) {
-        var diff = touchStartX - e.changedTouches[0].screenX;
-        if (Math.abs(diff) > 60) { if (diff > 0) next(); else prev(); }
-      }, { passive: true });
-      var wheelLock = false;
-      document.addEventListener('wheel', function(e) {
-        if (wheelLock) return;
-        if (Math.abs(e.deltaX) > Math.abs(e.deltaY) && Math.abs(e.deltaX) > 40) {
-          e.preventDefault(); if (e.deltaX > 0) next(); else prev(); wheelLock = true;
-        } else if (Math.abs(e.deltaY) > 40) {
-          e.preventDefault(); if (e.deltaY > 0) next(); else prev(); wheelLock = true;
-        }
-        if (wheelLock) setTimeout(function() { wheelLock = false; }, 700);
-      }, { passive: false });
-    }
-
-    init();
-  })();
-  </script>
+    <footer>
+      <span>© HANK（五花肉）</span>
+      <span>由 GitHub Pages 静态托管</span>
+      <span>单仓库 · 多主题 · 同域 path 隔离</span>
+      <a href="https://github.com/HankGuo/webppt">GitHub 仓库</a>
+    </footer>
+  </main>
 </body>
 </html>

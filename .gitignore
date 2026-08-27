@@ -1,0 +1,6 @@
+# 不纳入版本管理
+.workbuddy/
+.DS_Store
+*.bak
+*.tmp
+node_modules/
