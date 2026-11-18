@@ -1,5 +1,8 @@
 # WebPPT · 单仓库多主题 HTML 演示聚合站
 
+> 📌 **内容站 · 静态部署** —— 本仓库是已上线站点的源码：**代码基本冻结，内容持续更新**。
+> 线上地址：https://webppt.aichi.food  ·  站点总览与更多内容以主站 [aichi.food](https://aichi.food) 为准。
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-success)](https://webppt.aichi.food/)
 [![Repo Size](https://img.shields.io/github/repo-size/HankGuo/webppt)](https://github.com/HankGuo/webppt)
